@@ -191,25 +191,51 @@
     	<!--//End Our Services -->
     </div><!--/row-fluid-->
 
-	<!-- Tabs and Carousel-->
-    <!-- Information Blokcs -->
-    <div class="row-fluid margin-bottom-20">
-        <!-- Who We Are -->
-        <div class="span8">
-            <div id="milestone" class="headline"><h3>Milestones</h3></div>
-            <br>
-	    <div id="buildstatus" class="headline"><h3>Build Status</h3></div>
-        </div><!--/span8-->
-
-        <!-- Latest Commits -->
-        <div class="span4">
-            <div id="commits" class="blog-twitter">
-                <div class="headline"><h3>Latest Commits</h3></div>
+            <!-- Gathered information -->
+            <div class="page-header">
+                <h1>Dashboard</h1>
             </div>
-        </div><!--/span4-->
-    </div><!--/row-fluid-->
-    <!-- //End Information Blocks -->
-</div><!--/container-->		
+            <div class="row-fluid">
+                <!-- Dashboard (issues) -->
+                <div id="milestones" class="span8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Ongoing projects</h3>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Task name</th>
+                                    <th>Assignee</th>
+                                    <th>Priority</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody id="project_issues">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Build status -->
+                <div class="span4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Build Status</h3>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Build name</th>
+                                </tr>
+                            </thead>
+                            <tbody id="build_tasks">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 <!--=== End Content Part ===-->
 
 <!--=== Footer ===-->
@@ -283,91 +309,107 @@
 <script type="text/javascript" src="assets/js/app.js"></script>
 <script type="text/javascript" src="assets/js/date.js"></script>
 <script type="text/javascript" src="assets/js/jquery.timeago.js" ></script>
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        App.init();
-        App.initSliders();
+        <script type="text/javascript">
+            function formatIssues(jsonIssues) {
+                var htmlIssues = [];
+                $.each(jsonIssues, function(key, val) {
+                    var issue = '<tr>' +
+                            '<td><a href="' + val.html_url + '">' + val.title + '</a></td>';
+                    if (val.assignee) {
+                        issue += '<td>' + val.assignee.login + '</td>';
+                    } else {
+                        issue += '<td>None</td>';
+                    }
+                    htmlIssues.push(
+                            issue +
+                            '<td> </td>' +
+                            '<td>' + val.state + '</td>' +
+                            '</tr>');
+                });
+                return htmlIssues;
+            };
+    
+            jQuery(document).ready(function() {
 
-//        $.getJSON('https://api.github.com/orgs/ControlSystemStudio/members', function(data) {
-//            var items = [];
-//
-//            $.each(data, function(key, val) {
-//                items.push('<li class="gitub">'+
-//                        '<a href="'+val.html_url+'">'+
-//                        '<img src="'+val.avatar_url+'" alt="'+val.login+'" />'+
-//                        '<img src="'+val.avatar_url+'" class="color-img" alt="'+val.login+'" />'+
-//                        '</a>'+
-//                        '</li>');
-//            });
-//
-//            $(items.join('')).appendTo('#collaborationList');
-//
-//
-//        });
+                // Query open milestone
+                $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones', function(data) {
 
-        $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones', function(data) {
-            var items = [];
+                    $.each(data, function(key, val) {
+                        var tableTemplate = '<div class="panel panel-primary">\
+                            <div id="milestone_title_' + val.number + '" class="panel-heading">\
+                            </div>\
+                            <div class="panel-body">\
+                                <div id="milestone_' + val.number + '"></div>\
+                            </div>\
+                            <table class="table table-striped">\
+                                <thead>\
+                                    <tr>\
+                                        <th>Task name</th>\
+                                        <th>Assignee</th>\
+                                        <th>Priority</th>\
+                                        <th>State</th>\
+                                    </tr>\
+                                </thead>\
+                                <tbody id="milestone_issues_' + val.number + '">\
+                                </tbody>\
+                            </table>\
+                        </div>'
+                        $(tableTemplate).prependTo('#milestones');
 
-            $.each(data, function(key, val) {
-                var d = new Date(val.due_on);
-                items.push(
-                        '<a href="https://github.com/ControlSystemStudio/cs-studio/issues?milestone='+val.number+'"><li>Milestone: '+val.title+'</li></a>'+
-                                '<li><i class="icon-ok color-blue"></i> Open Issues: '+val.open_issues+'</li>'+
-                                '<li><i class="icon-ok color-green"></i> Closed Issues: '+val.closed_issues+'</li>'+
-                                '<li>Due on: '+ d.toString()+'</li><br>');
+                        var d = new Date(val.due_on);
+                        // Add title with current milestone
+                        $('<h3 class="panel-title">Current milestone: <a href="https://github.com/ControlSystemStudio/cs-studio/issues?milestone=' + val.number + '">' + val.title + '</a></h3>')
+                                .appendTo('#milestone_title_' + val.number);
+                        $(
+                                '<p>' + val.open_issues + ' open issues - ' +
+                                ' ' + val.closed_issues + ' closed issues - ' +
+                                'due on: ' + d.toString() + '</p>').appendTo('#milestone_' + val.number);
+
+
+                        // Query the closed issues of the current milestone
+                        $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/issues?state=closed&milestone=' + val.number, function(data) {
+                            var issues = formatIssues(data);
+                            $(issues.join('')).appendTo('#milestone_issues_' + val.number);
+                        });
+
+                        // Query the open issues of the current milestone
+                        $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/issues?milestone=' + val.number, function(data) {
+                            var issues = formatIssues(data);
+                            $(issues.join('')).appendTo('#milestone_issues_' + val.number);
+                        });
+                    });
+
+                });
+
+                // Query the ongoing projects
+                $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/issues?labels=project', function(data) {
+                    var issues = formatIssues(data);
+                    $(issues.join('')).appendTo('#project_issues');
+                });
+
+                // Query the Jenkins jobs
+                $.getJSON('https://openepics.ci.cloudbees.com/view/CS-Studio/api/json?jsonp=?', function(data) {
+                    var items = [];
+
+                    $.each(data.jobs, function(key, val) {
+                        var s = '<tr>';
+                        switch (val.color) {
+                            case "blue":
+                            case "blue_anime":
+                                s = s + '<td><i class="icon-smile color-green"></i></td>';
+                                break;
+                            default:
+                                s = s + '<td><i class="icon-frown color-red"></i></td>';
+                                break
+                        }
+                        items.push(s + '"<td><a href="' + val.url + '">  ' + val.name + '</td>' +
+                                '</tr>');
+                    });
+
+                    $(items.join('')).appendTo('#build_tasks');
+                });
             });
-
-            $('<ul/>', {
-                'class': 'unstyled',
-                html: items.join('')}).appendTo('#milestone');
-        });
-
-        $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/commits?sha=3.2.x&since='+(new Date().last().day()).toISOString(), function(data) {
-            var items = [];
-
-            $.each(data, function(key, val) {
-                try{
-                    items.push(
-                            '<p><a href="'+val.committer.html_url+'">@'+val.commit.committer.name+'  </a>'+
-                                    val.commit.message+'  '+'<a href="'+val.html_url+'"><i class="icon-external-link"></i></a>'+
-                                    '<span>'+$.timeago(val.commit.committer.date)+'</span></p>');
-                } catch(e) {
-                    // need for non public github users
-                    items.push(
-                            '<p><a href="#">@'+val.commit.committer.name+'  </a>'+
-                                    val.commit.message+'  '+'<a href="'+val.html_url+'"><i class="icon-external-link"></i></a>'+
-                                    '<span>'+$.timeago(val.commit.committer.date)+'</span></p>');
-                };
-            });
-
-            $(items.join('')).appendTo('#commits');
-        });
-
-        $.getJSON('https://openepics.ci.cloudbees.com/view/CS-Studio/api/json?jsonp=?', function(data) {
-            var items = [];
-
-            $.each(data.jobs, function(key, val) {
-                var s = '<li><i class="';
-                switch(val.color){
-                    case "blue":
-                        s = s + 'icon-smile color-green';
-                        break;
-                    case "red":
-                        s = s + 'icon-frown color-red';
-                        break;
-                    default:
-                        s = s + 'icon-meh color-grey';
-                        break
-                }
-                items.push(s +'"></i><a href="'+val.url+'">  '+val.name+'</a></li>');
-            });
-
-            $('<ul/>', {
-                'class': 'unstyled',
-                html: items.join('')}).appendTo('#buildstatus');
-        });
-    });
-</script>
+        </script>
 <!--[if lt IE 9]>
     <script src="assets/js/respond.js"></script>
 <![endif]-->

@@ -382,13 +382,33 @@
                 });
 
                 // Query the ongoing projects
-                $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/issues?labels=project', function(data) {
-                    var issues = formatIssues(data);
+                $.getJSON('https://api.github.com/search/issues?q=label:project+-label:Backlog+user:ControlSystemStudio+repo:cs-studio+state:open', function(data) {
+                    var issues = formatIssues(data.items);
                     $(issues.join('')).appendTo('#project_issues');
                 });
 
                 // Query the Jenkins jobs
-                $.getJSON('https://openepics.ci.cloudbees.com/view/CS-Studio/api/json?jsonp=?', function(data) {
+                $.getJSON('https://openepics.ci.cloudbees.com/view/CS-Studio%203.3/api/json?jsonp=?', function(data) {
+                    var items = [];
+
+                    $.each(data.jobs, function(key, val) {
+                        var s = '<tr>';
+                        switch (val.color) {
+                            case "blue":
+                            case "blue_anime":
+                                s = s + '<td><i class="icon-smile color-green"></i></td>';
+                                break;
+                            default:
+                                s = s + '<td><i class="icon-frown color-red"></i></td>';
+                                break
+                        }
+                        items.push(s + '"<td><a href="' + val.url + '">  ' + val.name + '</td>' +
+                                '</tr>');
+                    });
+
+                    $(items.join('')).appendTo('#build_tasks');
+                });
+                $.getJSON('https://openepics.ci.cloudbees.com/view/CS-Studio%204.0/api/json?jsonp=?', function(data) {
                     var items = [];
 
                     $.each(data.jobs, function(key, val) {

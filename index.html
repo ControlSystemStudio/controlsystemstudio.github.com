@@ -49,6 +49,9 @@
 </head>	
 
 <body>
+<!--==Link to GitHub==-->
+<a href="https://github.com/ControlSystemStudio/cs-studio"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
 <!--=== Style Switcher ===-->    
 <i class="style-switcher-btn icon-cogs"></i>
 <div class="style-switcher">
@@ -162,7 +165,7 @@
             <div class="da-img"><img src="cs-studio/img/pvManagerGraphene.png" alt="" /></div>
         </div>
         <div class="da-slide">
-            <h2><i>NEW FEATURES</i> <br /> <i>IN</i> <br /> <i>VERSION 3.2.7</i></h2>
+            <h2><i>Our Current</i> <br /><i>Stable Release</i> <br /> <i class="version-number-query"> </i></h2>
             <p><i>Showing off new</i> <br /> <i>graphs and tables in our latest version</i></p>
             <div class="da-img span6">
             	<div class="span6">
@@ -368,6 +371,25 @@
         Index.initParallaxSlider();
 
     });
+</script>
+
+<!--Add current version to heading-->
+<script>
+$(document).ready(function() {
+
+      $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones', function(data) {
+                $.each(data, function(key, val) {
+			var title;
+			var newTitle;
+			if(val.title.indexOf("stable") != -1){   //check if "stable" is in string
+                            title = val.title;
+                        }
+	                newTitle = title.split(" ");   //split into an array
+                        $('.version-number-query').text("is " + newTitle[0]);         //place current version in heading
+		});
+      });
+});
+
 </script>
 
 <!--[if lt IE 9]>

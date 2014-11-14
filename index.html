@@ -162,7 +162,7 @@
             <div class="da-img"><img src="cs-studio/img/pvManagerGraphene.png" alt="" /></div>
         </div>
         <div class="da-slide">
-            <h2><i>NEW FEATURES</i> <br /> <i>IN</i> <br /> <i>VERSION 3.2.7</i></h2>
+            <h2><i>Our Current</i> <br /><i>Stable Release</i> <br /> <i class="version-number-query"> </i></h2>
             <p><i>Showing off new</i> <br /> <i>graphs and tables in our latest version</i></p>
             <div class="da-img span6">
             	<div class="span6">
@@ -368,6 +368,25 @@
         Index.initParallaxSlider();
 
     });
+</script>
+
+<!--Add current version to heading-->
+<script>
+$(document).ready(function() {
+
+      $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones', function(data) {
+                $.each(data, function(key, val) {
+			var title;
+			var newTitle;
+			if(val.title.indexOf("stable") != -1){   //check if "stable" is in string
+                            title = val.title;
+                        }
+	                newTitle = title.split(" ");   //split into an array
+                        $('.version-number-query').text("is " + newTitle[0]);         //place current version in heading
+		});
+      });
+});
+
 </script>
 
 <!--[if lt IE 9]>

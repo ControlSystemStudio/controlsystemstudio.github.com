@@ -21,7 +21,9 @@ body {
     line-height:1.6;
 	background:#fff;
 }
-
+.cornerGitHubLink img{
+	z-index:99999999;
+}
 p, a, li { 
 	color:#555;
 	line-height:1.6; 

@@ -307,21 +307,32 @@
         App.initSliders();
 
 
-                $.getJSON('https://api.github.com/orgs/ControlSystemStudio/members', function(data) {
+                $.getJSON('https://spreadsheets.google.com/feeds/list/1PZVr6kG3-l9RT16vIfGz5ITog3BZOi9-PZoYBF0w0js/od6/public/values?alt=json', function(data) {
             var items = [];
 
-            $.each(data, function(key, val) {
+            $.each(data.feed.entry, function(key, val) {
+
+		function hubName() {
+			var url;
+			if (val.gsx$githubusername.$t == "" || val.gsx$githubusername.$t == null){
+				url = "#";
+			}
+			else{
+				url = "https://github.com/" + val.gsx$githubusername.$t;
+			}
+			return url;
+		}
+		
                 items.push(
                 '<li class="span3">'+
                         '<div class="thumbnail-style">'+
-                        '<img src="'+val.avatar_url+'" alt="'+val.login+'" />'+
-                        '<h3><a href="'+val.html_url+'">'+val.login+'</a> <small>Committer</small></h3>'+
+                  <!--===   '<img src="'+val.avatar_url+'" alt="'+val.login+'" />'+ ===  Possibly add pictures later-->
+                        '<h3><a href="'+hubName()+'">'+val.gsx$siterepresentative.$t+'</a> <small>Committer</small></h3>'+
                         '<p>Currently from Github members list</p>'+
-                '<ul class="unstyled inline">'+
-                        '<li><a href="#"><i class="icon-facebook"></i></a></li>'+
-                        '<li><a href="#"><i class="icon-twitter"></i></a></li>'+
-                        '<li><a href="#"><i class="icon-google-plus"></i></a></li>'+
-                        '</ul>'+
+                '<ul class="social-icons social-icons-color">'+
+                        '<li><a href="'+hubName()+'" class="social_github"></a></li>'+
+  
+                        '</ul>'+'<p style:"clear:both; display:hidden">.</p>'+ <!--fix floating issue from ul/github-social icon-->
                         '</div>'+
                 '</li>');
 

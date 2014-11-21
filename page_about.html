@@ -325,10 +325,10 @@
 		
                 items.push(
                 '<li class="span3">'+
-                        '<div class="thumbnail-style">'+
+                        '<div class="thumbnail-style" style="height:191px;">'+ <!--height is to account for 3 lines of a paragraph(facility);keeps thumbnails aligned-->
                   <!--===   '<img src="'+val.avatar_url+'" alt="'+val.login+'" />'+ ===  Possibly add pictures later-->
-                        '<h3><a href="'+hubName()+'">'+val.gsx$siterepresentative.$t+'</a> <small>Committer</small></h3>'+
-                        '<p>Currently from Github members list</p>'+
+                        '<h3><a href="'+hubName()+'">'+val.gsx$siterepresentative.$t+'</a> <small>Site Representative</small></h3>'+
+                        '<p>'+val.gsx$facility.$t+'</p>'+
                 '<ul class="social-icons social-icons-color">'+
                         '<li><a href="'+hubName()+'" class="social_github"></a></li>'+
   

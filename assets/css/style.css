@@ -1860,3 +1860,34 @@ i.style-switcher-btn-option:hover {
 	padding: 7px;
 	text-shadow: none !important;
 }
+
+/*style openhub widget*/
+.footer .frame_holder{
+	position:relative;width:350px; 
+	height:225px;
+}
+.openhub-title{
+	position:absolute; 
+	top:4px;left:80px; 
+	font-size:16px; 
+	font-weight:800; 
+	margin-top:0;
+}
+h3.openhub-title {
+	background:#585f69
+}
+.openhub-title a:link, .openhub-title a:visited{
+	font-size:20px; 
+	font-weight:800;
+	color:white; 
+	background:rgba(43,117,43,.55);
+	transition:-webkit-transition: 
+	width 2s; /* For Safari 3.1 to 6.0 */
+        transition: background-color 0s;
+}
+ h3.openhub-title a:hover, h3.openhub-title a:active{
+ 	font-size:20px; 
+ 	font-weight:800;
+ 	color:rgba(43,117,43,1); 
+ 	background:rgba(255,255,255,1);
+ }

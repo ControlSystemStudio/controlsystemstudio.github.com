@@ -1889,3 +1889,30 @@ h3.openhub-title {
  	font-weight:800;
  	color:white;
  }
+ div.widget_details{
+ 	position:absolute;
+ 	left:91px; 
+ 	top:48px;
+ 	font-family:open-sans;
+ 	width:117px;
+ }
+ .widget_details p{
+ 		font-size:smaller; 
+ 		color:white;
+ 		font-weight:normal;
+ 		line-height:1.4em;
+ 		margin:0 0 0.5em 0;
+ 		float:left; /*make p width as wide as actual amount of text-better background usage*/
+ 		background-color:#585f69; /*hide any black text*/
+ 		position:relative
+ }
+ /*fix link problems*/ 
+ .widget_details p a{
+ 		display:inline-block;
+ 		position:absolute;
+ 		top:0;
+ 		font-size:13px;
+ }
+ .widget_details p a span{
+ 	visibility:hidden /*so actual links are shown*/
+}

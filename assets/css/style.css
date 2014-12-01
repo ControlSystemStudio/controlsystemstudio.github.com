@@ -1880,7 +1880,6 @@ h3.openhub-title {
 	font-size:20px; 
 	font-weight:800;
 	color:white; 
-	background:rgba(43,117,43,.55);
 	transition:-webkit-transition: 
 	width 2s; /* For Safari 3.1 to 6.0 */
         transition: background-color 0s;

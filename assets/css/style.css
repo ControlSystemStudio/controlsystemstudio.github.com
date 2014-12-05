@@ -1896,17 +1896,19 @@ h3.openhub-title {
  	left:91px; 
  	top:48px;
  	font-family:open-sans;
- 	width:117px;
+ 	width:126px;
  }
  .widget_details p{
- 		font-size:smaller; 
+ 		font-size:10px; 
  		color:white;
  		font-weight:normal;
- 		line-height:1.4em;
+ 		line-height:1.5em;
+ 		/*cover black text in background*/
+ 		padding:0 9px 1px 0;
  		margin:0 0 0.5em 0;
  		float:left; /*make p width as wide as actual amount of text-better background usage*/
  		background-color:#585f69; /*hide any black text*/
- 		position:relative
+ 		position:relative;
  }
  /*fix link problems*/ 
  .widget_details p a{
@@ -1916,5 +1918,5 @@ h3.openhub-title {
  		font-size:13px;
  }
  .widget_details p a span{
- 	visibility:hidden /*so actual links are shown*/
+ 	visibility:hidden; /*so actual links are shown*/
 }

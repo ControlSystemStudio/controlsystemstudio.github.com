@@ -1918,3 +1918,12 @@ h3.openhub-title {
  .widget_details p a span{
  	visibility:hidden; /*so actual links are shown*/
 }
+.custom-btn{
+	background-image:none;
+	background-color:#72c02c;
+	color:white;
+	/*older browser*/
+	-webkit-box-shadow:0 -30px 15px -10px rgb(0,143,11) inset;
+	-moz-box-shadow:0 -30px 15px -10px rgb(0,143,11) inset;
+	box-shadow:0 -30px 15px -10px rgb(0,143,11) inset;
+}

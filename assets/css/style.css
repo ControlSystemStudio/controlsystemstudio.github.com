@@ -1918,7 +1918,13 @@ h3.openhub-title {
  .widget_details p a span{
  	visibility:hidden; /*so actual links are shown*/
 }
-.download_thumb a:hover, .dowload_thumb a:active{ /*downlaod page*/
+
+/*download page*/
+.download_thumb a:hover, .download_thumb a:active{ 
 	color:white;
 }
-
+.develop i{
+	font-style:normal;
+	color:#0000ee;
+	cursor:pointer;
+}

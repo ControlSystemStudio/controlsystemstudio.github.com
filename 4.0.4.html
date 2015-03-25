@@ -180,23 +180,13 @@
 	<div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
+            <ul id="sidebar" class="nav nav-list">
+              <li class="nav-header">Development</li>
               <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
+              <li class="nav-header">Stable</li>
+              <li class="active"><a href="#">4.0.4</a></li>
+              <li><a href="#">3.3.10</a></li>
+              <li><a href="#">3.2.16</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -319,22 +309,21 @@
     });
 </script>
 
-<!--Add current version to heading-->
+<!--Link for every version-->
 <script>
-$(document).ready(function() {
-
-      $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones', function(data) {
-                $.each(data, function(key, val) {
-			var title;
-			var newTitle;
-			if(val.title.indexOf("stable") != -1){   //check if "stable" is in string
-                            title = val.title;
-                        }
-	                newTitle = title.split(" ");   //split into an array
-                        $('.version-number-query').text("is " + newTitle[0]);         //place current version in heading
+$(document).ready(function(){
+	var releases = [];
+	var title;
+	$.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones?state=closed',function(data){
+		$.each(data,function(key,val){
+			title = val.title
+			if (title.indexOf("stable") != -1){ /*if 'stable' is found*/
+				releases.push(title)
+			};
 		});
-      });
-});
+		alert(releases[5])
+	});
+})
 
 </script>
 

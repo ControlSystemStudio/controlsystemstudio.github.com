@@ -21,10 +21,11 @@
     <link rel="shortcut icon" href="favicon.ico">        
     <!-- CSS Implementing Plugins -->    
     <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/plugins/flexslider/flexslider.css" type="text/css" media="screen">          
     <!-- CSS Theme -->    
     <link rel="stylesheet" href="assets/css/themes/default.css" id="style_color">
     <link rel="stylesheet" href="assets/css/themes/headers/default.css" id="style_color-header-1">
-
+	
     <!-- Start of Woopra Code -->
     <script type="text/javascript">
         function woopraReady(tracker) {
@@ -43,9 +44,20 @@
         })();
     </script>
     <!-- End of Woopra Code -->
-</head> 
+	<style>
+		.well{
+			padding:19px 15px 19px 15px;
+		}
+		.nav-list{
+			background-color:#f5f5f5;
+		}
+	</style>
+</head>
 
 <body>
+<!--==Link to GitHub==-->
+<a href="https://github.com/ControlSystemStudio/cs-studio" class="cornerGitHubLink"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
 <!--=== Style Switcher ===-->    
 <i class="style-switcher-btn icon-cogs"></i>
 <div class="style-switcher">
@@ -59,11 +71,11 @@
         <li class="theme-light" data-style="light" data-header="light"></li>
     </ul>
 </div><!--/style-switcher-->
-<!--=== End Style Switcher ===-->
+<!--=== End Style Switcher ===-->    
 
-<!--=== Top ===-->
+<!--=== Top ===-->    
 <div class="top">
-    <div class="container">
+    <div class="container">         
         <ul class="loginbar pull-right">
             <li><i class="icon-globe"></i><a>Languages <i class="icon-sort-up"></i></a>
                 <ul class="nav-list">
@@ -72,56 +84,57 @@
                     <li><a href="#">Russian</a></li>
                     <li><a href="#">German</a></li>
                 </ul>
-            </li>
+            </li>   
             <li class="devider">&nbsp;</li>
             <li><a href="#" class="login-btn">Help</a></li>
             <li class="devider">&nbsp;</li>
             <li><a href="#" class="login-btn">Login</a></li>
         </ul>
-    </div>
+    </div>      
 </div><!--/top-->
-<!--=== End Top ===-->
+<!--=== End Top ===-->    
 
 <!--=== Header ===-->
-<div class="header">
-    <div class="container">
-        <!-- Logo -->
-        <div class="logo">
+<div class="header">               
+    <div class="container"> 
+        <!-- Logo -->       
+        <div class="logo">                                             
             <a href="index.html"><img id="logo-header" src="cs-studio/img/css.png" alt="Logo"></a>
-        </div><!-- /logo -->
-
-        <!-- Menu -->
-        <div class="navbar">
-            <div class="navbar-inner">
+        </div><!-- /logo -->        
+                                    
+        <!-- Menu -->       
+        <div class="navbar">                                
+            <div class="navbar-inner">                                  
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </a><!-- /nav-collapse -->
-                <div class="nav-collapse collapse">
+                </a><!-- /nav-collapse -->                                  
+                <div class="nav-collapse collapse">                                     
                     <ul class="nav top-2">
                         <li class="active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home
-                                <b class="caret"></b>
+                                <b class="caret"></b>                            
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="active"><a href="index.html">Home</a></li>
                             </ul>
-                            <b class="caret-out"></b>
+                            <b class="caret-out"></b>                        
                         </li>
                         <li>
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Pages
-                                <b class="caret"></b>
+                                <b class="caret"></b>                            
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="page_about.html">About Us</a></li>
                                 <li><a href="contribute.html">Contribute</a></li>
+                                <li><a href="records.html">Documentation and Records</a></li>
                             </ul>
-                            <b class="caret-out"></b>
+                            <b class="caret-out"></b>                        
                         </li>
                         <li>
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Features
-                                <b class="caret"></b>
+                                <b class="caret"></b>                            
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="https://github.com/ControlSystemStudio/cs-studio/wiki/BEAST">BEAST</a></li>
@@ -130,9 +143,9 @@
                                 <li><a href="https://github.com/ControlSystemStudio/cs-studio/wiki/LogbookSupport">Logbook</a></li>
                                 <li><a href="#">Scan Client</a></li>
                             </ul>
-                            <b class="caret-out"></b>
+                            <b class="caret-out"></b>                        
                         </li>
-                        <li><a class="search"><i class="icon-search search-btn"></i></a></li>
+                        <li><a class="search"><i class="icon-search search-btn"></i></a></li>                               
                     </ul>
                     <div class="search-open">
                         <div class="input-append">
@@ -142,21 +155,21 @@
                             </form>
                         </div>
                     </div>
-                </div><!-- /nav-collapse -->
+                </div><!-- /nav-collapse -->                                
             </div><!-- /navbar-inner -->
-        </div><!-- /navbar -->
-    </div><!-- /container -->
-</div><!--/header -->
+        </div><!-- /navbar -->                          
+    </div><!-- /container -->               
+</div><!--/header -->      
 <!--=== End Header ===-->
 
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs margin-bottom-40">
+<div class="breadcrumbs margin-bottom-60">
 	<div class="container">
-        <h1 class="color-green pull-left">Page Not Founded</h1>
+        <h1 class="pull-left">Downloads</h1>
         <ul class="pull-right breadcrumb">
             <li><a href="index.html">Home</a> <span class="divider">/</span></li>
             <li><a href="">Pages</a> <span class="divider">/</span></li>
-            <li class="active">404</li>
+            <li class="active">Downloads</li>
         </ul>
     </div><!--/container-->
 </div><!--/breadcrumbs-->
@@ -164,9 +177,36 @@
 
 <!--=== Content Part ===-->
 <div class="container">		
-	<div class="row-fluid page-404">
-    	<p><i>404</i> <span>The Page cannot be found</span></p>
-    </div><!--/row-fluid-->        
+	<div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Sidebar</li>
+              <li class="active"><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+		<div class="span9 ">
+			<div class="well">
+			<h2 class="text-center">CS-Studio 4.0.4</h2>
+			</div>
+		</div>
+       
+    </div><!--/row-fluid-->
 </div><!--/container-->		
 <!--=== End Content Part ===-->
 
@@ -178,7 +218,27 @@
                 <!-- About -->
                 <div class="headline"><h3>About</h3></div>
                 <p class="margin-bottom-25">Control System Studio is an Eclipse-based collection of tools to monitor and operate large scale control systems, such as the ones in the accelerator community. It's a product of the collaboration between different laboratories and universities.</p>
-                <script type="text/javascript" src="http://www.ohloh.net/p/486835/widgets/project_basic_stats.js"></script>
+                <div  class="frame_holder">
+                	<h3 class="openhub-title"><a href="https://www.openhub.net/p/cs-studio" target="_blank" title="control system studio">Control System Studio</a></h3>  
+                	<div class="widget_details">
+                		<p>Main Language:
+                			<a href="https://www.openhub.net/p/cs-studio/analyses/latest/languages_summary" style="right:-32px">
+                				<span>Java</span>
+                			</a>
+                		</p>
+                		<p> Total Lines of Code:
+                			<a href="https://www.openhub.net/p/cs-studio/analyses/latest/languages_summary" style="right:-50px"><span>500,000</span></a>  <!--actual # does not matter, link is just placeholder to solve link problems-->
+                		</p>
+                		<p> Active Contributors: 
+                			<a href="https://www.openhub.net/p/cs-studio/contributors" style="right:-20px"><span>31</span></a>
+                		</p>
+                		<p> Commit Activity Timeline: </p>
+			</div>
+                	<script type="text/javascript" src="http://www.ohloh.net/p/486835/widgets/project_basic_stats.js"></script>
+                </div>
+
+      
+
 
             </div><!--/span4-->
 
@@ -190,7 +250,13 @@
                 <div class="headline"><h3>Contact Us</h3></div>
                 <address>
 
-                    Email: <a href="mailto:cs-studio-users@lists.sourceforge.net" class="">cs-studio-users@lists.sourceforge.net</a>
+                
+                    User Level Questions: <a href="http://www.aps.anl.gov/epics/tech-talk/">http://www.aps.anl.gov/epics/tech-talk/</a>
+                    <br>
+                    Developer Level Questions: <a href = "cs-studio-core@lists.sourceforge.net">cs-studio-core@lists.sourceforge.net</a>
+                    <br>
+                    Report Bugs/Problems: <a href="https://github.com/ControlSystemStudio/cs-studio/issues">https://github.com/ControlSystemStudio/cs-studio/issues</a>
+
                 </address>
 
                 <!-- Stay Connected -->
@@ -204,48 +270,78 @@
                 <!--<div class="headline"><h3>Monthly Newsletter</h3></div>-->
                 <!--<p>Subscribe to our newsletter and stay up to date with the latest news and deals!</p>-->
                 <!--<form class="form-inline">-->
-                <!--<div class="input-append">-->
-                <!--<input type="text" placeholder="Email Address" class="input-medium">-->
-                <!--<button class="btn-u">Subscribe</button>-->
-                <!--</div>-->
+                    <!--<div class="input-append">-->
+                        <!--<input type="text" placeholder="Email Address" class="input-medium">-->
+                        <!--<button class="btn-u">Subscribe</button>-->
+                    <!--</div>-->
                 <!--</form>-->
             </div><!--/span4-->
         </div><!--/row-fluid-->
     </div><!--/container-->
-</div><!--/footer-->
+</div><!--/footer-->	
 <!--=== End Footer ===-->
 
 <!--=== Copyright ===-->
 <div class="copyright">
-    <div class="container">
-        <div class="row-fluid">
-            <div class="span8">
-                <p>2013 &copy; Some copyright stuff here. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            </div>
-            <div class="span4">
-                <a href="index.html"><img id="logo-footer" src="assets/img/logo2-default.png" class="pull-right" alt="" /></a>
-            </div>
-        </div><!--/row-fluid-->
-    </div><!--/container-->
-</div><!--/copyright-->
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span8">						
+	            <p>2013 &copy; Some copyright stuff here. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+			</div>
+			<div class="span4">	
+				<a href="index.html"><img id="logo-footer" src="cs-studio/img/css.png" class="pull-right" alt="" /></a>
+			</div>
+		</div><!--/row-fluid-->
+	</div><!--/container-->	
+</div><!--/copyright-->	
 <!--=== End Copyright ===-->
 
-<!-- JS Global Compulsory -->           
+<!-- JS Global Compulsory -->			
 <script type="text/javascript" src="assets/js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="assets/js/modernizr.custom.js"></script>        
-<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="assets/js/modernizr.custom.js"></script>		
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>	
 <!-- JS Implementing Plugins -->           
+<script type="text/javascript" src="assets/plugins/flexslider/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="assets/plugins/parallax-slider/js/modernizr.js"></script>
+<script type="text/javascript" src="assets/plugins/parallax-slider/js/jquery.cslider.js"></script> 
 <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
 <!-- JS Page Level -->           
 <script type="text/javascript" src="assets/js/app.js"></script>
+<script type="text/javascript" src="assets/js/pages/index.js"></script>
+<script type="text/javascript" src="assets/js/date.js"></script>
+<script type="text/javascript" src="assets/js/jquery.timeago.js" ></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         App.init();
+        App.initSliders();
+        Index.initParallaxSlider();
+
     });
 </script>
+
+<!--Add current version to heading-->
+<script>
+$(document).ready(function() {
+
+      $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones', function(data) {
+                $.each(data, function(key, val) {
+			var title;
+			var newTitle;
+			if(val.title.indexOf("stable") != -1){   //check if "stable" is in string
+                            title = val.title;
+                        }
+	                newTitle = title.split(" ");   //split into an array
+                        $('.version-number-query').text("is " + newTitle[0]);         //place current version in heading
+		});
+      });
+});
+
+</script>
+
 <!--[if lt IE 9]>
-    <script src="assets/js/respond.js"></script>
+<script src="assets/js/respond.js"></script>
 <![endif]-->
+
 
 </body>
 </html> 

@@ -311,17 +311,31 @@
 
 <!--Link for every version-->
 <script>
+function getVersion(releases){
+	/*
+		extract version number from each releases title
+	*/
+	var i,str, version;
+	var stableReleases = [];
+	for (i=0; i < releases.length; i++) {
+		str = releases[i];
+		version = /\d.\d.\d+/.exec(str); //get version number
+		stableReleases.push(version);
+	}
+	return stableReleases;
+}
 $(document).ready(function(){
 	var releases = [];
-	var title;
+	var title, stableReleases;
 	$.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones?state=closed',function(data){
 		$.each(data,function(key,val){
 			title = val.title
-			if (title.indexOf("stable") != -1){ /*if 'stable' is found*/
+			if (title.indexOf("stable") != -1){ //if 'stable' is found
 				releases.push(title)
 			};
 		});
-		alert(releases[5])
+		stableReleases = getVersion(releases);
+		alert(stableReleases[2]);
 	});
 })
 

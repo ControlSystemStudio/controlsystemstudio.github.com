@@ -311,32 +311,81 @@
 
 <!--Link for every version-->
 <script>
-function getVersion(releases){
+function getVersion(title){
 	/*
-		extract version number from each releases title
+	get the version number of the title
 	*/
-	var i,str, version;
-	var stableReleases = [];
-	for (i=0; i < releases.length; i++) {
-		str = releases[i];
-		version = /\d.\d.\d+/.exec(str); //get version number
-		stableReleases.push(version);
-	}
-	return stableReleases;
+	var pattern = /\d+.\d+.\d+/;
+	return String(pattern.exec(title));
 }
+function clean(stableReleases){
+	/*
+	get latest bug release
+	*/
+	var pattern = /\d+.\d+./; //get just version number
+	var i, version,versionNumber;
+	var bugNumber,bugIndex;
+	var versions_obj = {};
+	for (i=0; i<stableReleases.length; i++){
+		version = stableReleases[i];
+		versionNumber = String(pattern.exec(version)); //get version number
+		bugIndex = version.lastIndexOf('.');
+		bugNumber = version.slice(bugIndex+1);
+
+		if (versions_obj.hasOwnProperty(versionNumber)){
+			versions_obj[versionNumber].push(bugNumber);
+		}
+		else{
+			versions_obj[versionNumber] = [bugNumber];
+		}
+	
+	};
+	
+}
+
 $(document).ready(function(){
-	var releases = [];
-	var title, stableReleases;
-	$.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones?state=closed',function(data){
+	/*
+		Algorithm:
+			open closed milestones
+			loop through each milestone, and push each stable version into stableReleases
+			within closed milestones JSON, get open milestones JSON
+			when json2 is done functioning,
+	*/
+
+	var stableReleases = [];
+	var currentRelease, inDevelopment;
+	
+	//get closed milestones - append all past stable versions to stableReleases
+	$.getJSON('https://api.github.com/repos/controlsystemstudio/cs-studio/milestones?state=closed',function(data){
 		$.each(data,function(key,val){
-			title = val.title
-			if (title.indexOf("stable") != -1){ //if 'stable' is found
-				releases.push(title)
-			};
+			var version, title;
+			title = val.title;
+			//if it is stable, strip out version number and add it to stable releases
+			if (title.indexOf('stable') != -1){ //if 'stable' is found
+				version = getVersion(title);
+				stableReleases.push(version);
+			}
 		});
-		stableReleases = getVersion(releases);
-		alert(stableReleases[2]);
+		
+		//get open milestones - grab current release and version in development
+		$.getJSON('https://api.github.com/repos/controlsystemstudio/cs-studio/milestones',function(data){
+			$.each(data,function(key,val){
+				var version, title;
+				title = val.title;
+				//if it is stable, strip out version number and add it to stable releases
+				if (title.indexOf('stable') != -1){ //if 'stable' is found
+					currentRelease = getVersion(title);
+				}
+				else{
+					inDevelopment = getVersion(title);
+				}
+			});
+		}).done(function(){
+			clean(stableReleases);
+		});
+		
 	});
+
 })
 
 </script>

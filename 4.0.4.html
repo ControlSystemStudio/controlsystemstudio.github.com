@@ -181,12 +181,8 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul id="sidebar" class="nav nav-list">
-              <li class="nav-header">Development</li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Stable</li>
-              <li class="active"><a href="#">4.0.4</a></li>
-              <li><a href="#">3.3.10</a></li>
-              <li><a href="#">3.2.16</a></li>
+				<li class="nav-header develop_header">In Development</li>
+				<li class="nav-header stable_header">Stable Releases</li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -309,7 +305,9 @@
     });
 </script>
 
+
 <!--Link for every version-->
+<!--Anthony Dionise-->
 <script>
 function getVersion(title){
 	/*
@@ -322,34 +320,65 @@ function clean(stableReleases){
 	/*
 	get latest bug release
 	*/
+	
 	var pattern = /\d+.\d+./; //get just version number
-	var i, version,versionNumber;
-	var bugNumber,bugIndex;
+	var i, version,versionNumber,key;
+	var bugNumber,bugIndex,officialBug;
 	var versions_obj = {};
+	var officialVersions = [];
+	
+	//create object with version number as properties and bug numbers as their respective values
 	for (i=0; i<stableReleases.length; i++){
 		version = stableReleases[i];
 		versionNumber = String(pattern.exec(version)); //get version number
 		bugIndex = version.lastIndexOf('.');
-		bugNumber = version.slice(bugIndex+1);
+		bugNumber = +version.slice(bugIndex+1); //turn into integer to work properly later(max function)
 
-		if (versions_obj.hasOwnProperty(versionNumber)){
+		if (versions_obj.hasOwnProperty(versionNumber)){ //if object already has that version, add bugnumber to its array
 			versions_obj[versionNumber].push(bugNumber);
 		}
 		else{
-			versions_obj[versionNumber] = [bugNumber];
+			versions_obj[versionNumber] = [bugNumber]; //otherwise, create a property for it and create array value with the bug number
 		}
 	
 	};
 	
+	//replace each property's array with their highest bug value and create array of latest versions
+	for (key in versions_obj){
+		officialBug = Math.max.apply(Math,versions_obj[key]);  
+		versions_obj[key] = officialBug;
+		officialVersions.push(key + String(versions_obj[key])); 
+	};
+	
+	//return array of versions
+	return officialVersions;
+	
 }
 
+function createList(header,version){
+	var anchor,item;
+	
+	//create link tag and append the version number
+	anchor = $('<a href="#">').text(version);
+	//create list element with anchor in it
+	item = $('<li>').append(anchor);
+	//append li after given list header
+	header.after(item);
+	
+}
 $(document).ready(function(){
 	/*
 		Algorithm:
 			open closed milestones
 			loop through each milestone, and push each stable version into stableReleases
 			within closed milestones JSON, get open milestones JSON
-			when json2 is done functioning,
+			when json2 is done functioning,grab current version and testing version
+			push current version into stableReleases
+			stableReleases contains many duplicates with different bug numbers - 
+			clean stableReleases so that it contains only the latest bug release of each version
+			add each stable release to navbar after 'stable releases' header link
+			add in devlopment version to navbar after 'in devlopment' header
+			
 	*/
 
 	var stableReleases = [];
@@ -381,7 +410,19 @@ $(document).ready(function(){
 				}
 			});
 		}).done(function(){
-			clean(stableReleases);
+			var i ;
+			stableReleases = clean(stableReleases);
+			stableReleases.push(currentRelease);
+			stableReleases.sort();
+			var header1 = $('.develop_header');
+			var header2 = $('.stable_header');
+			for (i=0; i<stableReleases.length; i++){
+				version = stableReleases[i];
+				createList(header2,version);
+			}
+			
+			createList(header1,inDevelopment);
+			
 		});
 		
 	});

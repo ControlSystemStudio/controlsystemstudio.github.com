@@ -188,7 +188,8 @@
         </div><!--/span-->
 		<div class="span9 ">
 			<div class="well">
-			<h2 class="text-center">CS-Studio 4.0.4</h2>
+			<h2 class="text-center main-header">CS-Studio 4.0.4</h2>
+			<div class="text-center main-date"></div>
 			</div>
 		</div>
        
@@ -362,10 +363,16 @@ function createList(header,version){
 	anchor = $('<a href="#">').text(version);
 	//create list element with anchor in it
 	item = $('<li>').append(anchor);
+	item.addClass('nav-link');
 	//append li after given list header
 	header.after(item);
 	
 }
+function getDate(date){
+	var pattern = /\d{4}-\d{2}-\d{2}/
+	return String(pattern.exec(date));
+}
+
 $(document).ready(function(){
 	/*
 		Algorithm:
@@ -383,46 +390,81 @@ $(document).ready(function(){
 
 	var stableReleases = [];
 	var currentRelease, inDevelopment;
-	
+	var releaseDates = {};
 	//get closed milestones - append all past stable versions to stableReleases
 	$.getJSON('https://api.github.com/repos/controlsystemstudio/cs-studio/milestones?state=closed',function(data){
 		$.each(data,function(key,val){
-			var version, title;
+			var version, title,date;
 			title = val.title;
+			date = val.closed_at;
 			//if it is stable, strip out version number and add it to stable releases
 			if (title.indexOf('stable') != -1){ //if 'stable' is found
 				version = getVersion(title);
 				stableReleases.push(version);
+				
+				//get dates
+				date = getDate(date);
+				releaseDates[version] = date;
+				
 			}
+			
 		});
 		
 		//get open milestones - grab current release and version in development
 		$.getJSON('https://api.github.com/repos/controlsystemstudio/cs-studio/milestones',function(data){
 			$.each(data,function(key,val){
-				var version, title;
+				var version, title, date;
 				title = val.title;
+				date = val.updated_at;
 				//if it is stable, strip out version number and add it to stable releases
 				if (title.indexOf('stable') != -1){ //if 'stable' is found
 					currentRelease = getVersion(title);
+					
 				}
 				else{
 					inDevelopment = getVersion(title);
+					
 				}
+				releaseDates[getVersion(title)] = getDate(date);
 			});
 		}).done(function(){
 			var i ;
+			var latestRelease,date,mainHeader;
+			//single out each version - latest bug release
 			stableReleases = clean(stableReleases);
 			stableReleases.push(currentRelease);
 			stableReleases.sort();
 			var header1 = $('.develop_header');
 			var header2 = $('.stable_header');
+			
+			//append each version to appropriate section of the navbar
 			for (i=0; i<stableReleases.length; i++){
 				version = stableReleases[i];
 				createList(header2,version);
 			}
-			
 			createList(header1,inDevelopment);
+			//*********************************************************
 			
+			//set defaults
+			latestRelease = header2.next();
+			mainHeader = $('.main-header');
+			date = $('.main-date');
+			
+			latestRelease.addClass('active');
+			mainHeader.text("CS-Studio " + latestRelease.text());
+			date.text(releaseDates[latestRelease.text()]);
+			
+			$('.nav-link').click(function(){
+				var linkText;
+				$('.nav-link').removeClass('active');
+				$(this).addClass('active');
+				
+				linkText = $(this).children().text();
+				$('.main-header').text("CS-Studio " + linkText);
+				$('.main-date').text(releaseDates[linkText]);
+			});
+			
+		
 		});
 		
 	});

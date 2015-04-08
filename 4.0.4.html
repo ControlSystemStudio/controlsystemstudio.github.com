@@ -181,7 +181,7 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul id="sidebar" class="nav nav-list">
-				<li class="nav-header develop_header">In Development</li>
+				<li class="nav-header develop_header" >In Development</li>
 				<li class="nav-header stable_header">Stable Releases</li>
             </ul>
           </div><!--/.well -->
@@ -190,6 +190,17 @@
 			<div class="well">
 			<h2 class="text-center main-header">CS-Studio 4.0.4</h2>
 			<div class="text-center main-date"></div>
+			<div class="text-center tabbable">
+				<ul class="nav nav-tabs">
+					<li class="active tabz" id="update_site-tab"><a href="#">Update Site</a></li>
+					<li class="tabz" id="artifacts-tab"><a href="">Artifacts</a></li>
+				</ul>
+			</div>
+			<div class="tab-content">
+				<div class="tab-pane" id="update_site">
+				</div>
+				<div class="tab-pane" id="artifacts">
+				</div>
 			</div>
 		</div>
        
@@ -367,6 +378,11 @@ function createList(header,version){
 	//append li after given list header
 	header.after(item);
 	
+	if (header.hasClass('develop_header')){
+		item.addClass('in-develop-link');
+	};
+		
+	
 }
 function getDate(date){
 	var pattern = /\d{4}-\d{2}-\d{2}/
@@ -387,7 +403,10 @@ $(document).ready(function(){
 			add in devlopment version to navbar after 'in devlopment' header
 			
 	*/
-
+	var page;
+	
+	
+	
 	var stableReleases = [];
 	var currentRelease, inDevelopment;
 	var releaseDates = {};
@@ -428,6 +447,8 @@ $(document).ready(function(){
 				releaseDates[getVersion(title)] = getDate(date);
 			});
 		}).done(function(){
+			
+			
 			var i ;
 			var latestRelease,date,mainHeader;
 			//single out each version - latest bug release
@@ -464,7 +485,49 @@ $(document).ready(function(){
 				$('.main-date').text(releaseDates[linkText]);
 			});
 			
-		
+			$('.tabz').click(function(){
+				$('.tabz').removeClass('active');
+				$(this).addClass('active');
+				
+				var elementID = $(this).attr('id');
+				
+				
+				
+				
+			});
+		}).done(function(){
+			//create artifacts URL
+			var activeLink,fullVersion,version,url;
+			
+			activeLink = $('#sidebar').children('li.active');
+			fullVersion = activeLink.children("a").text();
+			version = String(/\d+.\d+/.exec(fullVersion));
+			if (activeLink.hasClass('in-develop-link')){
+					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%20";
+			}else{
+					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%204.0/job/CS-Studio%20-%20Release%20-%20";
+			};
+			url += version + "/";
+			$('#artifacts-tab').children('a').attr("href",url);
+			
+			//if user switches versions, change url to match version
+			$('#sidebar').children('li').click(function(){
+				activeLink = $('#sidebar').children('li.active');
+				fullVersion = $('#sidebar').children('li.active').children("a").text();
+				version = String(/\d+.\d+/.exec(fullVersion));
+				
+				if (activeLink.hasClass('in-develop-link')){
+					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%20";
+				}else{
+					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%204.0/job/CS-Studio%20-%20Release%20-%20";
+				};
+				
+				url += version + "/";
+				$('#artifacts-tab').children('a').attr("href",url);
+				
+			});
+			
+		   
 		});
 		
 	});

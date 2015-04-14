@@ -13,19 +13,19 @@
     <meta name="author" content="">
 
     <!-- CSS Global Compulsory-->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/headers/header1.css">
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="assets/css/style_responsive.css">
+    <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/headers/header1.css">
+    <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="../assets/css/style_responsive.css">
     <link rel="shortcut icon" href="favicon.ico">        
     <!-- CSS Implementing Plugins -->    
-    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/plugins/flexslider/flexslider.css" type="text/css" media="screen">          
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../assets/plugins/flexslider/flexslider.css" type="text/css" media="screen">          
     <!-- CSS Theme -->    
-    <link rel="stylesheet" href="assets/css/themes/default.css" id="style_color">
-    <link rel="stylesheet" href="assets/css/themes/headers/default.css" id="style_color-header-1">
-
+    <link rel="stylesheet" href="../assets/css/themes/default.css" id="style_color">
+    <link rel="stylesheet" href="../assets/css/themes/headers/default.css" id="style_color-header-1">
+	
     <!-- Start of Woopra Code -->
     <script type="text/javascript">
         function woopraReady(tracker) {
@@ -44,6 +44,14 @@
         })();
     </script>
     <!-- End of Woopra Code -->
+	<style>
+		.well{
+			padding:19px 15px 19px 15px;
+		}
+		.nav-list{
+			background-color:#f5f5f5;
+		}
+	</style>
 </head>
 
 <body>
@@ -91,7 +99,7 @@
     <div class="container"> 
         <!-- Logo -->       
         <div class="logo">                                             
-            <a href="index.html"><img id="logo-header" src="cs-studio/img/css.png" alt="Logo"></a>
+            <a href="index.html"><img id="logo-header" src="../cs-studio/img/css.png" alt="Logo"></a>
         </div><!-- /logo -->        
                                     
         <!-- Menu -->       
@@ -170,86 +178,32 @@
 <!--=== Content Part ===-->
 <div class="container">		
 	<div class="row-fluid">
-        <!-- Pricing -->
-		<h2 class="pull-left">Download CS-Studio:</h2>
-        <div class="row-fluid margin-bottom-40">
-        	<div class="span3 pricing hover-effect download_thumb">
-            	<div class="pricing-head">
-                	<h3>CS-Studio<span></span></h3>
-                    <!--<h4><i>$</i>5<i>.49</i> <span>Per Month</span></h4>-->
-                </div>
-                <ul class="pricing-content unstyled">
-                    
-                </ul>
-            	<div class="pricing-footer"><!--for control over inner lienk-->
-                	<p>Download CS-Studio</p>
-                	<a href="controlsystemstudio/current.html">Download Now</a>
-					<p class="develop">or try <i onclick="location.href='controlsystemstudio/development.html'">the latest development build</i></p>
-                </div>
-            </div>
-			<div class="span9" style="height:222px; text-decoration:underline"> <!--makes footer react normal to hover-->
-        </div><!--/row-fluid-->
-        <!--//End Pricing -->
-
-		<hr class="margin-bottom-60" />
-		<h2>Site Specific Versions:</h2>
-	    <div class="row-fluid margin-bottom-40">
-        	<div class="span3 pricing hover-effect download_thumb">
-            	<div class="pricing-head">
-                	<h3>DESY<span></span></h3>
-                    <!--<h4><i>$</i>5<i>.49</i> <span>Per Month</span></h4>-->
-                </div>
-                <ul class="pricing-content unstyled">
-                    
-                </ul>
-            	<div class="pricing-footer">
-                	<p>Download DESY</p>
-                	<a href="http://css.desy.de/content/e413/index_eng.html">Download Now</a>
-                </div>
-            </div>				
-			<div class="span3 pricing hover-effect download_thumb">
-            	<div class="pricing-head">
-                	<h3>KEK<span></span></h3>
-                    <!--<h4><i>$</i>5<i>.49</i> <span>Per Month</span></h4>-->
-                </div>
-                <ul class="pricing-content unstyled">
-                    
-                </ul>
-            	<div class="pricing-footer">
-                	<p>Download KEK</p>
-                	<a href="http://www-linac.kek.jp/cont/css/">Download Now</a>
-                </div>
-            </div>
-			<div class="span3 pricing hover-effect download_thumb">
-            	<div class="pricing-head">
-                	<h3>NSLSII<span></span></h3>
-                    <!--<h4><i>$</i>5<i>.49</i> <span>Per Month</span></h4>-->
-                </div>
-                <ul class="pricing-content unstyled">
-                    
-                </ul>
-            	<div class="pricing-footer">
-                	<p>Download NSLSII</p>
-                	<a href="http://cs-studio.sourceforge.net/nsls2/nsls2.html">Download Now</a>
-                </div>
-            </div>
-			<div class="span3 pricing hover-effect download_thumb">
-            	<div class="pricing-head">
-                	<h3>SNS<span></span></h3>
-                    <!--<h4><i>$</i>5<i>.49</i> <span>Per Month</span></h4>-->
-                </div>
-                <ul class="pricing-content unstyled">
-                    
-                </ul>
-            	<div class="pricing-footer">
-                	<p>Download SNS</p>
-                	<a href="http://ics-web.sns.ornl.gov/css/index.html">Download Now</a>
-                </div>
-            </div>
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul id="sidebar" class="nav nav-list">
+				<li class="nav-header develop_header" >In Development</li>
+				<li class="nav-header stable_header">Stable Releases</li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+		<div class="span9 ">
+			<div class="well">
+			<h2 class="text-center main-header">CS-Studio 4.0.4</h2>
+			<div class="text-center main-date"></div>
+			<div class="text-center tabbable">
+				<ul class="nav nav-tabs">
+					<li class="active tabz" id="update_site-tab"><a href="#">Update Site</a></li>
+					<li class="tabz" id="artifacts-tab"><a href="">Artifacts</a></li>
+				</ul>
 			</div>
-        </div><!--/row-fluid-->
-        <!--//End Pricing -->
-       
+			<div class="tab-content">
+				<div class="tab-pane" id="update_site">
+				</div>
+				<div class="tab-pane" id="artifacts">
+				</div>
+			</div>
+		</div>
+       </div>
     </div><!--/row-fluid-->
 </div><!--/container-->		
 <!--=== End Content Part ===-->
@@ -333,7 +287,7 @@
 	            <p>2013 &copy; Some copyright stuff here. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
 			</div>
 			<div class="span4">	
-				<a href="index.html"><img id="logo-footer" src="cs-studio/img/css.png" class="pull-right" alt="" /></a>
+				<a href="index.html"><img id="logo-footer" src="../cs-studio/img/css.png" class="pull-right" alt="" /></a>
 			</div>
 		</div><!--/row-fluid-->
 	</div><!--/container-->	
@@ -341,19 +295,19 @@
 <!--=== End Copyright ===-->
 
 <!-- JS Global Compulsory -->			
-<script type="text/javascript" src="assets/js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="assets/js/modernizr.custom.js"></script>		
-<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>	
+<script type="text/javascript" src="../assets/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="../assets/js/modernizr.custom.js"></script>		
+<script type="text/javascript" src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>	
 <!-- JS Implementing Plugins -->           
-<script type="text/javascript" src="assets/plugins/flexslider/jquery.flexslider-min.js"></script>
-<script type="text/javascript" src="assets/plugins/parallax-slider/js/modernizr.js"></script>
-<script type="text/javascript" src="assets/plugins/parallax-slider/js/jquery.cslider.js"></script> 
-<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="../assets/plugins/flexslider/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="../assets/plugins/parallax-slider/js/modernizr.js"></script>
+<script type="text/javascript" src="../assets/plugins/parallax-slider/js/jquery.cslider.js"></script> 
+<script type="text/javascript" src="../assets/plugins/back-to-top.js"></script>
 <!-- JS Page Level -->           
-<script type="text/javascript" src="assets/js/app.js"></script>
-<script type="text/javascript" src="assets/js/pages/index.js"></script>
-<script type="text/javascript" src="assets/js/date.js"></script>
-<script type="text/javascript" src="assets/js/jquery.timeago.js" ></script>
+<script type="text/javascript" src="../assets/js/app.js"></script>
+<script type="text/javascript" src="../assets/js/pages/index.js"></script>
+<script type="text/javascript" src="../assets/js/date.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.timeago.js" ></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         App.init();
@@ -363,29 +317,229 @@
     });
 </script>
 
-<!--Add current version to heading-->
-<script>
-$(document).ready(function() {
 
-      $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones', function(data) {
-                $.each(data, function(key, val) {
-			var title;
-			var newTitle;
-			if(val.title.indexOf("stable") != -1){   //check if "stable" is in string
-                            title = val.title;
-                        }
-	                newTitle = title.split(" ");   //split into an array
-                        $('.version-number-query').text("is " + newTitle[0]);         //place current version in heading
+<!--Link for every version-->
+<!--Anthony Dionise-->
+<script>
+function getVersion(title){
+	/*
+	get the version number of the title
+	*/
+	var pattern = /\d+.\d+.\d+/;
+	return String(pattern.exec(title));
+}
+function clean(stableReleases){
+	/*
+	get latest bug release
+	*/
+	
+	var pattern = /\d+.\d+./; //get just version number
+	var i, version,versionNumber,key;
+	var bugNumber,bugIndex,officialBug;
+	var versions_obj = {};
+	var officialVersions = [];
+	
+	//create object with version number as properties and bug numbers as their respective values
+	for (i=0; i<stableReleases.length; i++){
+		version = stableReleases[i];
+		versionNumber = String(pattern.exec(version)); //get version number
+		bugIndex = version.lastIndexOf('.');
+		bugNumber = +version.slice(bugIndex+1); //turn into integer to work properly later(max function)
+		//only include versions above 3.2
+		if (versionNumber > "3.2."){ 
+			if (versions_obj.hasOwnProperty(versionNumber)){ //if object already has that version, add bugnumber to its array
+				versions_obj[versionNumber].push(bugNumber);
+			}
+			else{
+				versions_obj[versionNumber] = [bugNumber]; //otherwise, create a property for it and create array value with the bug number
+			}
+		};
+	};
+	
+	//replace each property's array with their highest bug value and create array of latest versions
+	for (key in versions_obj){
+		officialBug = Math.max.apply(Math,versions_obj[key]);  
+		versions_obj[key] = officialBug;
+		officialVersions.push(key + String(versions_obj[key])); 
+	};
+	
+	//return array of versions
+	return officialVersions;
+	
+}
+
+function createList(header,version){
+	var anchor,item;
+	
+	//create link tag and append the version number
+	anchor = $('<a href="#">').text(version);
+	//create list element with anchor in it
+	item = $('<li>').append(anchor);
+	item.addClass('nav-link');
+	//append li after given list header
+	header.after(item);
+	
+	if (header.hasClass('develop_header')){
+		item.addClass('in-develop-link');
+	};
+		
+}
+function getDate(date){
+	var pattern = /\d{4}-\d{2}-\d{2}/
+	return String(pattern.exec(date));
+}
+
+$(document).ready(function(){
+	/*
+		Algorithm:
+			open closed milestones
+			loop through each milestone, and push each stable version into stableReleases
+			within closed milestones JSON, get open milestones JSON
+			when json2 is done functioning,grab current version and testing version
+			push current version into stableReleases
+			stableReleases contains many duplicates with different bug numbers - 
+			clean stableReleases so that it contains only the latest bug release of each version
+			add each stable release to navbar after 'stable releases' header link
+			add in devlopment version to navbar after 'in devlopment' header
+			
+	*/
+	var page;
+	
+	
+	
+	var stableReleases = [];
+	var currentRelease, inDevelopment;
+	var releaseDates = {};
+	//get closed milestones - append all past stable versions to stableReleases
+	$.getJSON('https://api.github.com/repos/controlsystemstudio/cs-studio/milestones?state=closed',function(data){
+		$.each(data,function(key,val){
+			var version, title,date;
+			title = val.title;
+			date = val.closed_at;
+			//if it is stable, strip out version number and add it to stable releases
+			if (title.indexOf('stable') != -1){ //if 'stable' is found
+				version = getVersion(title);
+				stableReleases.push(version);
+				
+				//get dates
+				date = getDate(date);
+				releaseDates[version] = date;
+				
+			}
+			
 		});
-      });
-});
+		
+		//get open milestones - grab current release and version in development
+		$.getJSON('https://api.github.com/repos/controlsystemstudio/cs-studio/milestones',function(data){
+			$.each(data,function(key,val){
+				var version, title, date;
+				title = val.title;
+				date = val.updated_at;
+				//if it is stable, strip out version number and add it to stable releases
+				if (title.indexOf('stable') != -1){ //if 'stable' is found
+					currentRelease = getVersion(title);
+					
+				}
+				else{
+					inDevelopment = getVersion(title);
+					
+				}
+				releaseDates[getVersion(title)] = getDate(date);
+			});
+		}).done(function(){
+			
+			
+			var i ;
+			var latestRelease,date,mainHeader;
+			//single out each version - latest bug release
+			stableReleases = clean(stableReleases);
+			stableReleases.push(currentRelease);
+			stableReleases.sort();
+			var header1 = $('.develop_header');
+			var header2 = $('.stable_header');
+			
+			//append each version to appropriate section of the navbar
+			for (i=0; i<stableReleases.length; i++){
+				version = stableReleases[i];
+				createList(header2,version);
+			}
+			createList(header1,inDevelopment);
+			//*********************************************************
+			
+			//set defaults
+			latestRelease = header1.next(); //FOR DEVLOPMENT PAGE - IN DEVELOPMENT LINK IS ACTIVE
+			mainHeader = $('.main-header');
+			date = $('.main-date');
+			
+			latestRelease.addClass('active');
+			mainHeader.text("CS-Studio " + latestRelease.text());
+			date.text(releaseDates[latestRelease.text()]);
+			
+			$('.nav-link').click(function(){
+				var linkText;
+				$('.nav-link').removeClass('active');
+				$(this).addClass('active');
+				
+				linkText = $(this).children().text();
+				$('.main-header').text("CS-Studio " + linkText);
+				$('.main-date').text(releaseDates[linkText]);
+			});
+			
+			$('.tabz').click(function(){
+				$('.tabz').removeClass('active');
+				$(this).addClass('active');
+				
+				var elementID = $(this).attr('id');
+				
+				
+				
+				
+			});
+		}).done(function(){
+			//create artifacts URL
+			var activeLink,fullVersion,version,url;
+			
+			activeLink = $('#sidebar').children('li.active');
+			fullVersion = activeLink.children("a").text();
+			version = String(/\d+.\d+/.exec(fullVersion));
+			if (activeLink.hasClass('in-develop-link')){
+					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%20";
+			}else{
+					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%204.0/job/CS-Studio%20-%20Release%20-%20";
+			};
+			url += version + "/";
+			$('#artifacts-tab').children('a').attr("href",url);
+			
+			//if user switches versions, change url to match version
+			$('#sidebar').children('li').click(function(){
+				activeLink = $('#sidebar').children('li.active');
+				fullVersion = $('#sidebar').children('li.active').children("a").text();
+				version = String(/\d+.\d+/.exec(fullVersion));
+				
+				if (activeLink.hasClass('in-develop-link')){
+					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%20";
+				}else{
+					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%204.0/job/CS-Studio%20-%20Release%20-%20";
+				};
+				
+				url += version + "/";
+				$('#artifacts-tab').children('a').attr("href",url);
+				
+			});
+			
+		   
+		});
+		
+	});
+
+})
 
 </script>
 
 <!--[if lt IE 9]>
-<script src="assets/js/respond.js"></script>
+<script src="../assets/js/respond.js"></script>
 <![endif]-->
 
-
+<div id="topcontrol" title="Scroll Back to Top" style="position: fixed; bottom: 5px; right: 5px; opacity: 1; cursor: pointer;"><img src="../assets/img/up.png" style="width:51px; height:42px"></div>
 </body>
 </html> 

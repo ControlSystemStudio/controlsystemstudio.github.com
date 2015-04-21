@@ -1928,3 +1928,8 @@ h3.openhub-title {
 	color:#0000ee;
 	cursor:pointer;
 }
+
+/*real download pages*/
+.updateSite{
+	color:green;
+}

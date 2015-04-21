@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../assets/css/headers/header1.css">
     <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="../assets/css/style_responsive.css">
-    <link rel="shortcut icon" href="favicon.ico">        
+    <link rel="shortcut icon" href="../favicon.ico">        
     <!-- CSS Implementing Plugins -->    
     <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="../assets/plugins/flexslider/flexslider.css" type="text/css" media="screen">          
@@ -198,8 +198,10 @@
 			</div>
 			<div class="tab-content">
 				<div class="tab-pane active" id="update_site">
-					<p>Add the following URL to your <b>Eclipse</b> installation, via:</p>
+					<p>Add the following URL to your <b class="eclipseVersion"></b> installation, via:</p>
 					<blockquote>Help > Install New Software... > Work with:</blockquote>
+					<a class="updateSite" href=""></a>
+					<p>Then select the individual features that you want to install</p>
 				</div>
 				<div class="tab-pane" id="artifacts">
 				</div>
@@ -390,7 +392,22 @@ function getDate(date){
 	var pattern = /\d{4}-\d{2}-\d{2}/
 	return String(pattern.exec(date));
 }
-
+function getEclipseVersion(version,updateSite,eclipseVersion){
+	/*
+		make update site tab correspond to active link
+	*/
+	$.getJSON('https://spreadsheets.google.com/feeds/list/1CgJm2SxbDPWLyzNC1TSqvWlJHioF-sj-FLy9pPB2Fcg/od6/public/values?alt=json',function(data){
+		$.each(data.feed.entry,function(key,val){
+			var pattern = /\d.\d/;
+			var csstudioVersion = pattern.exec(val.gsx$csstudioversion.$t);
+			if (version == csstudioVersion){
+				updateSite.text(val.gsx$csstudioupdatesite.$t);
+				updateSite.attr("href",val.gsx$csstudioupdatesite.$t);
+				eclipseVersion.text("Eclipse " + val.gsx$eclipseversionname.$t + " " + val.gsx$eclipseversion.$t);
+			};
+		});
+	});
+}
 $(document).ready(function(){
 	/*
 		Algorithm:
@@ -499,11 +516,16 @@ $(document).ready(function(){
 			});
 		}).done(function(){
 			//create artifacts URL
-			var activeLink,fullVersion,version,url;
+			var activeLink,fullVersion,version,url,eclipseVersion,updateSite;
 			
 			activeLink = $('#sidebar').children('li.active');
 			fullVersion = activeLink.children("a").text();
 			version = String(/\d+.\d+/.exec(fullVersion));
+			eclipseVersion = $('.eclipseVersion');
+			updateSite = $('.updateSite');
+			
+			
+			getEclipseVersion(version,updateSite,eclipseVersion);
 			if (activeLink.hasClass('in-develop-link')){
 					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%20";
 			}else{
@@ -517,7 +539,7 @@ $(document).ready(function(){
 				activeLink = $('#sidebar').children('li.active');
 				fullVersion = $('#sidebar').children('li.active').children("a").text();
 				version = String(/\d+.\d+/.exec(fullVersion));
-				
+				getEclipseVersion(version,updateSite,eclipseVersion);
 				if (activeLink.hasClass('in-develop-link')){
 					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%20";
 				}else{

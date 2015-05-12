@@ -193,7 +193,7 @@
 			<div class="text-center tabbable">
 				<ul class="nav nav-tabs">
 					<li class="active tabz" id="update_site-tab"><a href="#">Update Site</a></li>
-					<li class="tabz" id="artifacts-tab"><a href="">Artifacts</a></li>
+					<li class="tabz" id="artifacts-tab"><a href="#">Artifacts</a></li>
 				</ul>
 			</div>
 			<div class="tab-content">
@@ -203,8 +203,11 @@
 					<a class="updateSite" href=""></a>
 					<p>Then select the individual features that you want to install</p>
 				</div>
-				<div class="tab-pane" id="artifacts">
-					
+				<div class="tab-pane" id="artifacts-pane">
+					<p>Listed below are artifacts related to this release.</p>
+					<p>Install into Eclipse via:</p>
+					<blockquote>Help > Install New Software... > Work with:</blockquote>
+					<a href="">Artifacts</a>
 				</div>
 			</div>
 		</div>
@@ -507,15 +510,16 @@ $(document).ready(function(){
 			});
 			
 			
+			var panes = [];
+			$('.tab-pane').each(function(){
+				panes.push($(this));
+			});
 			$('.tabz').click(function(){
+				var index = $(this).index();
 				$('.tabz').removeClass('active');
 				$(this).addClass('active');
-				
-				var elementID = $(this).attr('id');
-				
-				
-				
-				
+				$('.tab-pane').removeClass('active');
+				panes[index].addClass('active');
 			});
 		}).done(function(){
 			//create artifacts URL 
@@ -535,7 +539,7 @@ $(document).ready(function(){
 					url = "https://openepics.ci.cloudbees.com/view/CS-Studio%204.0/job/CS-Studio%20-%20Release%20-%20";
 			};
 			url += version + "/";
-			$('#artifacts-tab').children('a').attr("href",url);
+			$('#artifacts-pane').children('a').attr("href",url);
 			
 			//if user switches versions, change url to match version
 			$('#sidebar').children('li').click(function(){
@@ -552,7 +556,7 @@ $(document).ready(function(){
 			
 				
 				url += version + "/";
-				$('#artifacts-tab').children('a').attr("href",url);
+				$('#artifacts-pane').children('a').attr("href",url);
 				
 			});
 			

@@ -1933,3 +1933,6 @@ h3.openhub-title {
 .updateSite{
 	color:green;
 }
+.tabz{
+	cursor:pointer;
+}

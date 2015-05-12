@@ -393,20 +393,19 @@
 </script>
 
 <!--Add current version to heading-->
+<!-- Anthony Dionise-->
 <script>
 $(document).ready(function() {
-
-      $.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones', function(data) {
-                $.each(data, function(key, val) {
-			var title;
-			var newTitle;
-			if(val.title.indexOf("stable") != -1){   //check if "stable" is in string
-                            title = val.title;
-                        }
-	                newTitle = title.split(" ");   //split into an array
-                        $('.version-number-query').text("is " + newTitle[0]);         //place current version in heading
+	$.getJSON('https://api.github.com/repos/ControlSystemStudio/cs-studio/milestones', function(data) {
+		$.each(data,function(key,val){
+			if (val.title.indexOf("stable") != -1){//"stable" is found in title
+				var version;
+				var pattern = /\d.\d.\d/;
+				version = pattern.exec(val.title);
+				$('.version-number-query').text("is " + version);
+			}
 		});
-      });
+	});
 });
 
 </script>

@@ -419,15 +419,17 @@
                             var issues = formatIssues(data);
                             $(issues.join('')).appendTo('#milestone_issues_' + val.number);
                         });
+						
+						
                     });
 
                 });
 
                 // Query the ongoing projects
-                $.getJSON('https://api.github.com/search/issues?q=label:project+-label:Backlog+user:ControlSystemStudio+repo:cs-studio+state:open', function(data) {
-                    var issues = formatProjects(data.items);
-                    $(issues.join('')).appendTo('#project_issues');
-                });
+					$.getJSON('https://api.github.com/search/issues?q=label:project+-label:Backlog+user:ControlSystemStudio+repo:cs-studio+state:open', function(data) {
+						var issues = formatIssues(data.items);
+						$(issues.join('')).appendTo('#project_issues');
+					});
 
                 // Query the Jenkins jobs
                 $.getJSON('https://openepics.ci.cloudbees.com/view/CS-Studio%203.3/api/json?jsonp=?', function(data) {

@@ -190,6 +190,7 @@
 			<div class="well">
 			<h2 class="text-center main-header">CS-Studio 4.0.4</h2>
 			<div class="text-center main-date"></div>
+			<p class="alert alert-info"role="alert"><b>Requirements: </b><span class="eclipseVersion"></span> </p>
 			<div class="text-center tabbable">
 				<ul class="nav nav-tabs">
 					<li class="active tabz" id="update_site-tab"><a>Update Site</a></li>
@@ -207,7 +208,7 @@
 					<p>Listed below are artifacts related to this release.</p>
 					<p>Install into Eclipse via:</p>
 					<blockquote>Help > Install New Software... > Work with:</blockquote>
-					<a href="">Artifacts</a>
+					<span class="purchase"><a class = "btn btn-buy"href="">Download</a></span>
 				</div>
 			</div>
 		</div>
@@ -408,6 +409,7 @@ function getEclipseVersion(version,updateSite,eclipseVersion){
 				updateSite.text(val.gsx$csstudioupdatesite.$t);
 				updateSite.attr("href",val.gsx$csstudioupdatesite.$t);
 				eclipseVersion.text("Eclipse " + val.gsx$eclipseversionname.$t + " " + val.gsx$eclipseversion.$t);
+				
 			};
 		});
 	});

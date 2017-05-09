@@ -3,4 +3,5 @@ controlsystemstudio.github.io
 
 cs-studio webpage
 
-CNAME at controlsystemstudio.org
+served from:
+http://controlsystemstudio.org
